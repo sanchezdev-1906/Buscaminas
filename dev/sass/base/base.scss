@@ -1,0 +1,20 @@
+*
+{
+  box-sizing: border-box;
+}
+body{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  align-items: center;
+  justify-items: center;
+
+  min-height: 100vh;
+  margin: 0;
+
+  background-color: $purple-100;
+  color: #000;
+
+  font-family: sans-serif;
+  font-size: 18px;
+}
