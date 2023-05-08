@@ -1,0 +1,87 @@
+.screen-menu
+{
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: max-content;
+  gap: 2em;
+  align-content: center;
+
+  min-width: 50%;
+  max-width: 500px;
+  min-height: max-content;
+  height: 50vh;
+  padding: 2rem;
+
+  border-radius: .8em;
+  background-color: $purple-90;
+}
+
+.select-button,
+.select,
+.select__item{
+  height: 2em;
+}
+
+.select{
+  position: relative;
+  width: 100px;
+  height: max-content;
+  cursor: pointer;
+  user-select: none;
+  
+  &:hover > &-options{
+    height: max-content;
+  }
+  &-options{
+    position: absolute;
+    top: 0;
+    height: 0;
+    overflow: hidden;
+    border-radius: .8em;
+  }
+
+  &__item,
+  &-button,
+  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-button{
+    border-radius: .8em;
+    background-color: $purple-10;
+  }
+
+  &__item{
+    width: 100px;
+    padding: .5em 1em;
+    
+    line-height: 1em;
+    background-color: $purple-10;
+  }
+  &-button:hover,
+  &__item:hover{
+    background-color: $select-hover;
+  }
+  &__item:active{
+    background-color: $button-active;
+  }
+}
+
+.play{
+  padding: .5em 2em;
+  
+  border: none;
+  border-radius: .8em;
+
+  font-size: 1rem;
+  background-color: $purple-80;
+  cursor: pointer;
+  
+  &:hover{
+    background-color: $button-hover;
+  }
+  &:active{
+    background-color: $button-active;
+  }
+}
