@@ -29,7 +29,7 @@
     "to-regex-range": "^5.0.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pug": "pug --watch dev/index.pug -o docs/"
   },
   "keywords": [],
   "author": "",
