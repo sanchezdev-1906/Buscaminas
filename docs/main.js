@@ -15,3 +15,10 @@ function crearTablero(width, height)
   }
 }
 
+function GenerarMinas(width, height) {
+  
+}
+function PosicionarMina(x, y) {
+  
+  return true
+}
