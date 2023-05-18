@@ -29,6 +29,7 @@
     "to-regex-range": "^5.0.1"
   },
   "scripts": {
+    "sass": "sass dev/sass/style.scss --watch docs/style.css",
     "pug": "pug --watch dev/index.pug -o docs/"
   },
   "keywords": [],
