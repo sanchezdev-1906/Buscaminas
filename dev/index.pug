@@ -5,5 +5,18 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Buscaminas
+    link(rel="stylesheet", href="style.css")
   body 
     section.game#game
+      section.screen-menu#menuScreen
+        button#botonJugar.play(type="submit") Jugar 
+        .select#select
+          div#selectButton.select-button(data-dificultad="facil")
+            span.select-text Facil
+          div.select-options#selectOptions(role="select")
+            span.select__item(role="option", data-value="facil") Facil
+            span.select__item(role="option", data-value="medio") Medio
+            span.select__item(role="option", data-value="dificil") Dificil
+      section.hidden.screen-game#gameScreen 
+        .tablero#tablero
+    script(src="main.js") 
