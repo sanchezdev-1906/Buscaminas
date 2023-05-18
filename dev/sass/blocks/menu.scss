@@ -1,12 +1,18 @@
 .screen-menu
 {
+  grid-column: 1/2;
+  grid-row: 1/2;
+
   display: grid;
-  grid-template-columns: max-content 1fr;
-  grid-template-rows: max-content;
-  gap: 2em;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content;
+  gap: 2.5em;
   align-content: center;
+  justify-items: center;
+  align-items: center;
 
   min-width: 50%;
+  width: 500px;
   max-width: 500px;
   min-height: max-content;
   height: 50vh;
@@ -14,6 +20,10 @@
 
   border-radius: .8em;
   background-color: $purple-90;
+  
+  &.hidden{
+    display: none;
+  }
 }
 
 .select-button,
@@ -24,6 +34,7 @@
 
 .select{
   position: relative;
+  place-self: start center;
   width: 100px;
   height: max-content;
   cursor: pointer;
@@ -69,8 +80,10 @@
 }
 
 .play{
-  padding: .5em 2em;
-  
+  width: max-content;
+  height: max-content;
+  padding: 1em 10em;
+
   border: none;
   border-radius: .8em;
 
