@@ -24,22 +24,37 @@ function crearTablero(ancho, alto)
 }
 
 // Recibe la posicion del primer click y crea las demas minas
-function CrearMinas(x,y,minas){
+function CrearMinas(x,y,nMinas){
   let min = 0
+
   // mientras sea menor al numero de minas
-  while (min < minas) {
-    let cx = parseInt(Math.random()*(ancho-1))
-    let cy = parseInt(Math.random()*(alto-1))
-    if (PosicionarMina(cx,cy)){
-      min++
+  while (min < nMinas) {
+    let cx = parseInt(Math.random()*(tablero[0].length-1))
+    let cy = parseInt(Math.random()*(tablero.length-1))
+    if ((cx > x+1 || cx < x-1) && (cy > y+1 || cy < y-1)){      
+      if (PosicionarMina(cx,cy)){
+        min++
+      }
     }
   }
 }
 
 // Ubica la mina en x,y; si existe una retorna false
 function PosicionarMina(x, y) {
-  
-  return true
+  if (tablero[y][x] != 9){
+    tablero[y][x] = 9 
+    for (let i = (y-1); i <= (y+1); i++) {
+      for (let j = (y-1); i<= (y+1); j++){
+        if ((i== y && j == x) || (i >= 10 || i < 0) || (j >= 10 || j < 0)|| (tablero[i][j] == 9)){
+          continue
+        }
+        tablero[i][j] += 1
+      }
+
+    }
+    return true
+  }
+  return false
 }
 
 // Detecta el inicio del juego
