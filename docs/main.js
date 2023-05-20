@@ -86,6 +86,15 @@ function PosicionarMina(x, y) {
   return false
 }
 
+// Asigna valores a las minas
+function AgregarAtributos() {
+  for (let i = 0; i < tablero.length; i++) {
+    for (let j = 0; j < tablero[0].length; j++) {
+      TableroJuego.children[i*tablero.length + j].dataset.number = tablero[i][j];
+    }
+  }
+}
+
 // Detecta el inicio del juego
 
 BotonJugar.addEventListener("click", (e)=>{
@@ -132,5 +141,9 @@ TableroJuego.addEventListener("click", (e)=>{
   if (inicioJuego == false) {
     inicioJuego = true
     CrearMinas(2,3,20);
+  }
+  else
+  {
+    AgregarAtributos();
   }
 })
