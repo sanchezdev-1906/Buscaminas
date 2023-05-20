@@ -56,28 +56,28 @@ function CrearMinas(x,y,nMinas){
 
   // mientras sea menor al numero de minas
   while (min < nMinas) {
-    let cx = parseInt(Math.random()*(tablero[0].length-1))
-    let cy = parseInt(Math.random()*(tablero.length-1))
+    let cx = parseInt(Math.random()*(ancho-1))
+    let cy = parseInt(Math.random()*(alto-1))
     if ((cx > x+1 || cx < x-1) && (cy > y+1 || cy < y-1)){      
       if (PosicionarMina(cx,cy)){
         min++
       }
     }
   }
+  console.log(tablero);
 }
 
 // Ubica la mina en x,y; si existe una retorna false
 function PosicionarMina(x, y) {
   if (tablero[y][x] != 9){
     tablero[y][x] = 9 
-    for (let i = (y-1); i <= (y+1); i++) {
-      for (let j = (y-1); i<= (y+1); j++){
-        if ((i== y && j == x) || (i >= 10 || i < 0) || (j >= 10 || j < 0)|| (tablero[i][j] == 9)){
+    for (let i = y-1; i <= y+1; i++) {
+      for (let j = (x-1); j<= (x+1); j++){
+        if ((x == i && y == j ) || (i >= tablero.length || i < 0) || (j >= tablero[0].length || j < 0)){
           continue
         }
         tablero[i][j] += 1
       }
-
     }
     return true
   }
@@ -105,7 +105,7 @@ BotonJugar.addEventListener("click", (e)=>{
       break;
   }
   TableroJuego.classList.add(BotonSelect.dataset.dificultad)
-  crearTablero(ancho, alto, minas)
+  crearTablero(ancho, alto)
   generarGrid();
   
   PantallaJuego.classList.remove("hidden")
@@ -125,5 +125,10 @@ TableroJuego.addEventListener("click", (e)=>{
   celda = e.target
   if (celda.classList.contains("celda") && ! (celda.classList.contains("vista"))) {
     celda.classList.add("vista")
+  }
+  // TODO
+  if (inicioJuego == false) {
+    inicioJuego = true
+    CrearMinas(2,3,20);
   }
 })
