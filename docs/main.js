@@ -9,7 +9,18 @@ let ancho, alto, minas
 let inicioJuego = false
 let celdaInicial = {
   x: undefined,
-  y: undefined
+  y: undefined,
+}
+
+function DeterminarPosicion(celda) {
+  let x, y
+  for (let i = 0; i < TableroJuego.children.length; i++) {
+    if(TableroJuego.children[i] == celda){
+      x = i%tablero[0].length;
+      y = parseInt(i/tablero.length);
+      return [x, y]
+    }
+  }
 }
 
 function crearTablero(ancho, alto)
@@ -58,7 +69,7 @@ function CrearMinas(x,y,nMinas){
   while (min < nMinas) {
     let cx = parseInt(Math.random()*(ancho-1))
     let cy = parseInt(Math.random()*(alto-1))
-    if (((cx > x+1 || cx < x-1) && (cy > y+1 || cy < y-1)) || (cx != x && cy != y)){      
+    if ((cx != x && cy != y)&&((cx > x+1 || cx < x-1) && (cy > y+1 || cy < y-1))){      
       if (PosicionarMina(cx,cy)){
         min++
       }
@@ -90,7 +101,14 @@ function PosicionarMina(x, y) {
 function AgregarAtributos() {
   for (let i = 0; i < tablero.length; i++) {
     for (let j = 0; j < tablero[0].length; j++) {
-      TableroJuego.children[i*tablero.length + j].dataset.number = tablero[i][j];
+      TableroJuego.children[i*tablero[0].length + j].dataset.number = tablero[i][j];
+    }
+  }
+}
+function MostrarTablero() {
+  for (let i = 0; i < tablero.length; i++) {
+    for (let j = 0; j < tablero[0].length; j++) {
+      TableroJuego.children[i*tablero[0].length + j].classList.add("vista")
     }
   }
 }
@@ -140,10 +158,11 @@ TableroJuego.addEventListener("click", (e)=>{
   // TODO
   if (inicioJuego == false) {
     inicioJuego = true
-    CrearMinas(2,3,20);
-  }
-  else
-  {
+    let posicion = DeterminarPosicion(celda);
+    CrearMinas(posicion[0],posicion[1],minas);
     AgregarAtributos();
+  }
+  else{
+    MostrarTablero();
   }
 })
