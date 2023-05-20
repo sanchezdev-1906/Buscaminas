@@ -6,6 +6,11 @@ const PantallaJuego = document.getElementById("gameScreen");
 const TableroJuego = document.getElementById("tablero") 
 let tablero
 let ancho, alto, minas
+let inicioJuego = false
+let celdaInicial = {
+  x: undefined,
+  y: undefined
+}
 
 function crearTablero(ancho, alto)
 {
@@ -21,6 +26,28 @@ function crearTablero(ancho, alto)
       tablero[i][j] = 0      
     }
   }
+}
+
+// Genera una grilla blanca y posiciona los elementos en la pantalla
+
+function generarGrid(){
+  let fragment = document.createDocumentFragment();
+  for (let i = 0; i < tablero.length; i++) {
+    for (let j = 0; j < tablero[i].length; j++) {
+      let celda = document.createElement("div");
+      if (i%2==0) {
+        celda.setAttribute("data-color",j%2==0?"even":"odd")
+      }
+      else
+      {
+        celda.setAttribute("data-color",j%2==0?"odd":"even")
+      }
+      celda.dataset.number = "0";
+      celda.classList.add("celda");
+      fragment.append(celda);
+    }
+  }
+  TableroJuego.append(fragment)
 }
 
 // Recibe la posicion del primer click y crea las demas minas
@@ -66,18 +93,20 @@ BotonJugar.addEventListener("click", (e)=>{
       alto = 9
       minas = 10
       break;
-      case "medio":
-        ancho = 16
-        alto = 16
-        minas = 40
-        break
-        case "dificil":
-          ancho = 30
-          alto = 16
-          minas = 99
+    case "medio":
+      ancho = 16
+      alto = 16
+      minas = 40
+      break
+    case "dificil":
+      ancho = 30
+      alto = 16
+      minas = 99
       break;
   }
+  TableroJuego.classList.add(BotonSelect.dataset.dificultad)
   crearTablero(ancho, alto, minas)
+  generarGrid();
   
   PantallaJuego.classList.remove("hidden")
   PantallaJuego.classList.add("aparecer")

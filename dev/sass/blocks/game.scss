@@ -27,8 +27,6 @@
 }
 .tablero{
   display: grid;
-  grid-template-columns: repeat(15, 1.5em);
-  grid-template-rows: repeat(10, 1.5em);
   background-color: $purple-100;
   border: solid 2px $tablero-border;
   .celda[data-color="odd"]{
@@ -36,6 +34,18 @@
   }
   .celda[data-color="even"]{
     background-color: $celda-2
+  }
+  &.facil{
+    grid-template-columns: repeat(9, 1.5em);
+    grid-template-rows: repeat(9, 1.5em);
+  }
+  &.medio{
+    grid-template-columns: repeat(16, 1.5em);
+    grid-template-rows: repeat(16, 1.5em);
+  }
+  &.dificil{
+    grid-template-columns: repeat(30, 1.5em);
+    grid-template-rows: repeat(16, 1.5em);
   }
 }
 .celda{
