@@ -7,7 +7,7 @@ const TableroJuego = document.getElementById("tablero")
 let tablero
 let ancho, alto, minas
 
-function crearTablero(ancho, alto, minas)
+function crearTablero(ancho, alto)
 {
   // Crea el tablero con ancho y alto y lo rellena con ceros
   tablero = []
@@ -21,7 +21,10 @@ function crearTablero(ancho, alto, minas)
       tablero[i][j] = 0      
     }
   }
+}
 
+// Recibe la posicion del primer click y crea las demas minas
+function CrearMinas(x,y,minas){
   let min = 0
   // mientras sea menor al numero de minas
   while (min < minas) {
