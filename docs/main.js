@@ -58,7 +58,7 @@ function CrearMinas(x,y,nMinas){
   while (min < nMinas) {
     let cx = parseInt(Math.random()*(ancho-1))
     let cy = parseInt(Math.random()*(alto-1))
-    if ((cx > x+1 || cx < x-1) && (cy > y+1 || cy < y-1)){      
+    if (((cx > x+1 || cx < x-1) && (cy > y+1 || cy < y-1)) || (cx != x && cy != y)){      
       if (PosicionarMina(cx,cy)){
         min++
       }
@@ -73,10 +73,12 @@ function PosicionarMina(x, y) {
     tablero[y][x] = 9 
     for (let i = y-1; i <= y+1; i++) {
       for (let j = (x-1); j<= (x+1); j++){
-        if ((x == i && y == j ) || (i >= tablero.length || i < 0) || (j >= tablero[0].length || j < 0)){
+        if ((x == j && y == i ) || (i >= tablero.length || i < 0) || (j >= tablero[0].length || j < 0) || (tablero[i][j] == 9)){
           continue
         }
-        tablero[i][j] += 1
+        else{
+          tablero[i][j] += 1
+        }
       }
     }
     return true
